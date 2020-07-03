@@ -1,0 +1,10 @@
+language: java
+jdk:
+    - openjdk8    
+addons:
+  sonarcloud:
+    organization: andreapaci
+    token: 775acf9c7021f1585cd4b02c50c451b6b20a3b3b
+
+install: mvn clean install -q -DskipTests=true -Dmaven.javadoc.skip=true -B -V -Djdk.tls.client.protocols="TLSv1,TLSv1.1,TLSv1.2"
+script: mvn verify sonar:sonar  -Dsonar.projectKey=andreapaci_bookkeeper -Pcoverage  -Dmaven.javadoc.skip=true
